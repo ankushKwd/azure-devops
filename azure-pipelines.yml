@@ -64,7 +64,7 @@ steps:
             artifact: drop
           - task: AzureWebApp@1
           displayName: 'Azure App Service Deploy: website'
-            inputs:
-              azureSubscription: 'Azure DevOps AK'
-              appName: '$(WebAppNameDev)'
-              package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+          inputs:
+            azureSubscription: 'Azure DevOps AK'
+            appName: '$(WebAppNameDev)'
+            package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
