@@ -13,7 +13,6 @@ variables:
   directory: src
   stage: development
   serviceConnection: Azure DevOps AK
-  - group: Release
   appServiceName: reactazuredemo
  
 steps:
@@ -56,6 +55,8 @@ steps:
  
 - task: AzureWebApp@1
   displayName: 'Deploy to App Service'
+  variables:
+    - group: Release
   inputs:
     azureSubscription: '$(serviceConnection)'
     appName: '$(appServiceName)'
