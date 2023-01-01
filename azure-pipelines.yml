@@ -18,8 +18,8 @@ steps:
 
 ## Run the npm install/build
 - script: |
-    pushd $(projectFolder) && npm install
-    pushd $(projectFolder) && npm run build
+    pushd $(projectFolder) && npm install && popd
+    pushd $(projectFolder) && npm run build && popd
 ## Copy the client to the staging directory
 - task: CopyFiles@2
   inputs:
