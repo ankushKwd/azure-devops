@@ -56,9 +56,7 @@ steps:
 - task: AzureWebApp@1
   displayName: 'Deploy to App Service'
   inputs:
-   variables:
-    - group: Release
-      azureSubscription: '$(serviceConnection)'
-      appName: '$(appServiceName)'
-      appType: 'webApp'
-      package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
+    azureSubscription: '$(serviceConnection)'
+    appName: '$(appServiceName)'
+    appType: 'webApp'
+    package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
