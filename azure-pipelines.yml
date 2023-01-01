@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- '*'
+- master
 
 pool:
   vmImage: windows-latest
@@ -19,52 +19,3 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '*.tgz' 
-    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy npm package'
-
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: 'package.json' 
-    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy package.json'   
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/npm'
-    artifactName: npm
-  displayName: 'Publish npm artifact'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
-    artifact: drop
-
-- task: Dev
-  displayName: 'Deploy to the dev environment'
-  dependsOn: 'Publish npm artifact'
-  jobs:
-  - deployment: Deploy
-    pool:
-      vmImage: 'windows-latest'
-    environment: dev
-    variables:
-    - group: Release
-  strategy:
-      runOnce:
-        deploy:
-          steps:
-          - download: current
-            artifact: drop
-          - task: AzureWebApp@1
-          displayName: 'Azure App Service Deploy: website'
-          inputs:
-            azureSubscription: 'Azure DevOps AK'
-            appName: '$(WebAppNameDev)'
-            package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
