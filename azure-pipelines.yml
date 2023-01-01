@@ -13,7 +13,7 @@ variables:
   directory: src
   stage: development
   serviceConnection: Azure DevOps AK
-  appServiceName: reactazuredemo
+  appServiceName: Release/reactazuredemo
  
 steps:
 - task: NodeTool@0
