@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 # Set variables
 variables:
-  directory: src
+  directory: azure-devops
   stage: development
   serviceConnection: Azure DevOps AK
   appServiceName: azure-devops-ak-webapp-dev
