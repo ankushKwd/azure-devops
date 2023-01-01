@@ -58,7 +58,7 @@ steps:
   inputs:
    variables:
     - group: Release
-    azureSubscription: '$(serviceConnection)'
-    appName: '$(appServiceName)'
-    appType: 'webApp'
-    package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
+      azureSubscription: '$(serviceConnection)'
+      appName: '$(appServiceName)'
+      appType: 'webApp'
+      package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
