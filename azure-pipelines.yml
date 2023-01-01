@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 # Set variables
 variables:
-  directory: react-azure-demo
+  directory: src
   stage: development
   serviceConnection: Azure DevOps AK
   appServiceName: reactazuredemo
