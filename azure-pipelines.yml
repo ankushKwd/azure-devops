@@ -55,9 +55,9 @@ steps:
  
 - task: AzureWebApp@1
   displayName: 'Deploy to App Service'
-  variables:
-    - group: Release
   inputs:
+   variables:
+    - group: Release
     azureSubscription: '$(serviceConnection)'
     appName: '$(appServiceName)'
     appType: 'webApp'
